@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+  nacostest:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - EnableConfig=true
+      - EnableNaming=true
+    ports:
+      - "5161:5161"
+    depends_on:
+      - nacos
+    #network_mode: host
+
+  nacos:
+    environment:
+      - MODE=standalone
+      - PREFER_HOST_MODE=hostname
+      - NACOS_SERVERS=nacos:8848
+    ports:
+      - 8848:8848
+      - 9848:9848
+      - 9849:9849

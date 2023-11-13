@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  nacostest:
+    hostname: nacostest
+    image: ${DOCKER_REGISTRY-}nacostest
+    build:
+      context: .
+      dockerfile: NacosTest/Dockerfile
+    networks:
+      - mynet
+
+  nacos:
+    hostname: nacos
+    image: nacos/nacos-server:v2.1.0
+    networks:
+      - mynet
+
+networks:
+  mynet:
+    driver: bridge  
